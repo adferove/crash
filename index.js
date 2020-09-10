@@ -2,6 +2,7 @@ const express = require('express');
 const dotenv = require('dotenv');
 const morgan = require('morgan');
 const colors = require('colors');
+const errorHandler = require('./middleware/error');
 const connectDB = require('./config/db');
 
 //Load env variables
@@ -24,9 +25,11 @@ if (process.env.NODE_ENV === 'dev') {
 
 //Body parser
 app.use(express.json());
-//Middleware End
 
 app.use('/api/v1/bootcamps', bootcamps);
+
+//Middleware Error
+app.use(errorHandler);
 
 const server = app.listen(PORT, () => {
   console.log(
