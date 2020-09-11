@@ -11,7 +11,9 @@ dotenv.config({ path: './config/config.env' });
 //Connect to database
 connectDB();
 
+//Routes
 const bootcamps = require('./routes/bootcamps');
+const courses = require('./routes/courses');
 
 const PORT = process.env.PORT || 3000;
 
@@ -27,6 +29,7 @@ if (process.env.NODE_ENV === 'dev') {
 app.use(express.json());
 
 app.use('/api/v1/bootcamps', bootcamps);
+app.use('/api/v1/courses', courses);
 
 //Middleware Error
 app.use(errorHandler);
