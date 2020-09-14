@@ -4,6 +4,7 @@ const dotenv = require('dotenv');
 const morgan = require('morgan');
 const colors = require('colors');
 const fileupload = require('express-fileupload');
+const cookieParser = require('cookie-parser');
 const errorHandler = require('./middleware/error');
 const connectDB = require('./config/db');
 
@@ -43,6 +44,9 @@ app.use('/api/v1/auth', auth);
 
 //Middleware Error
 app.use(errorHandler);
+
+//MW Cookie parser
+app.use(cookieParser);
 
 const server = app.listen(PORT, () => {
   console.log(
