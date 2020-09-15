@@ -20,11 +20,12 @@ const courses = require('./routes/courses');
 const auth = require('./routes/auth');
 const reviews = require('./routes/reviews');
 
-const PORT = process.env.PORT || 3000;
-
 const app = express();
 
 //Middleware Begin
+//MW Cookie parser
+app.use(cookieParser());
+
 //Dev logging
 if (process.env.NODE_ENV === 'dev') {
   app.use(morgan('dev'));
@@ -47,8 +48,7 @@ app.use('/api/v1/reviews', reviews);
 //Middleware Error
 app.use(errorHandler);
 
-//MW Cookie parser
-app.use(cookieParser);
+const PORT = process.env.PORT || 3000;
 
 const server = app.listen(PORT, () => {
   console.log(
